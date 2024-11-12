@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { fetchBookAndChapter } from '@/utils/bible';
+import ChapterSelect from '@/components/ChapterSelect';
 
 const Book = async function ({ params }: {
     params: Promise<{ book: string, chapter: string }>
@@ -12,6 +13,9 @@ const Book = async function ({ params }: {
 
     return (
         <div className="p-8">
+            <div className="flex justify-center">
+                <ChapterSelect />
+            </div>
             <div>
                 <h1>{`${book} ${chapter}`}</h1>
                 <p>
