@@ -16,10 +16,17 @@ export const getVersesFromChapterContent = (chapterContent: Content[]) => {
 
 // Returns the book and chapter from the api path
 export const parseBookAndChapterFomPath = (apiPath: string) => {
-    // apiPath is in the format /api/BSB/Matthew/13.json
-    const urlParts = apiPath.split('/');
-    const book = urlParts[3];
-    const chapter = urlParts[4].replace('.json', '');
+    let book, chapter;
+
+    try {
+        // apiPath is in the format /api/BSB/Matthew/13.json
+        const urlParts = apiPath.split('/');
+        book = urlParts[3];
+        chapter = urlParts[4].replace('.json', '');
+    } catch (error) {
+        console.log('Error parsing book and chapter from path:', error);
+    }
+
     return { book, chapter };
 }
 
