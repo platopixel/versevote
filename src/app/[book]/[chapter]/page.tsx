@@ -3,6 +3,7 @@
 import { fetchBookAndChapter } from '@/utils/bible';
 import ChapterSelect from '@/components/ChapterSelect';
 import NextPreviousButtons from '@/components/NextPreviousButtons';
+import Verse from '@/components/Verse';
 
 const Book = async function ({ params }: {
     params: Promise<{ book: string, chapter: string }>
@@ -18,12 +19,10 @@ const Book = async function ({ params }: {
             </div>
             <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} />
             <div className="border p-8 rounded-lg bg-amber-50  my-4">
-                <h1 className="font-bold">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
+                <h1 className="font-bold text-xl">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
                 <p>
                     {verses?.map((verse) => (
-                        <span key={verse.number}>
-                            <sup>{verse.number}</sup> {verse.text}
-                        </span>
+                        <Verse key={verse.number} number={verse.number} text={verse.text} />
                     ))}
                 </p>
             </div>
