@@ -35,14 +35,14 @@ const ChapterSelect = function ({ book, chapter }: { book?: string, chapter?: st
     }, []);
 
     return (
-        <div className="flex-col items-center justify-center p-12 border rounded">
+        <div className="flex-col items-center justify-center px-12 py-8 border rounded border-zinc-400">
             <Form
                 action={submitForm}
                 className="flex gap-4"
             >
                 <div className="items-center">
                     <label htmlFor="book" className="pr-1">Book:</label>
-                    <select name="book" className="p-2 border rounded" onChange={onSelectBook} value={currentBook.name}>
+                    <select name="book" className="p-1 px-4 border rounded" onChange={onSelectBook} value={currentBook.name}>
                         {BOOKS.map((book) => (
                             <option key={book.name} value={book.name}>{book.name.replace(/_/g, " ")}</option>
                         ))}
@@ -50,13 +50,13 @@ const ChapterSelect = function ({ book, chapter }: { book?: string, chapter?: st
                 </div>
                 <div className="items-center">
                     <label htmlFor="chapter" className="pr-1">Chapter:</label>
-                    <select name="chapter" className="p-2 border rounded" onChange={onSelectChapter} value={currentChapter}>
+                    <select name="chapter" className="p-1 px-4 border rounded" onChange={onSelectChapter} value={currentChapter}>
                         {Array.from({ length: currentBook.numChapters }, (_, i) => i + 1).map((chapter) => (
                             <option key={chapter} value={chapter}>{chapter}</option>
                         ))}
                     </select>
                 </div>
-                <button type="submit">Go</button>
+                <button type="submit" className="border border-slate-500 px-2 rounded shadow-md">Go</button>
             </Form>
         </div>
     );
