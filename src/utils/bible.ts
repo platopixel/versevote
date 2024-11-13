@@ -98,13 +98,16 @@ export const getVersesFromChapterContent = (chapterContent: Content[]) => {
 export const parseBookAndChapterFomPath = (apiPath: string) => {
     let book, chapter;
 
-    try {
-        // apiPath is in the format /api/BSB/Matthew/13.json
-        const urlParts = apiPath.split('/');
-        book = urlParts[3];
-        chapter = urlParts[4]?.replace('.json', '');
-    } catch (error) {
-        console.log('Error parsing book and chapter from path:', error);
+    if (apiPath) {
+        try {
+            // apiPath is in the format /api/BSB/Matthew/13.json
+            const urlParts = apiPath.split('/');
+            book = urlParts[3];
+            chapter = urlParts[4]?.replace('.json', '');
+        } catch (error) {
+            console.log('Error parsing book and chapter from path:', error);
+            console.log(apiPath);
+        }
     }
 
     return { book, chapter };
