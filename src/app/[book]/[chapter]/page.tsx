@@ -12,12 +12,12 @@ const Book = async function ({ params }: {
     const { verses, nextBookAndChapter, previousBookAndChapter } = await fetchBookAndChapter(book, chapter);
 
     return (
-        <div className="p-8">
+        <div className="p-8 mr-auto ml-auto" style={{ maxWidth: 1024 }}>
             <div className="flex justify-center">
-                <ChapterSelect />
+                <ChapterSelect book={book} chapter={chapter} />
             </div>
             <div>
-                <h1>{`${book} ${chapter}`}</h1>
+                <h1 className="font-bold">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
                 <p>
                     {verses?.map((verse) => {
                         return `${verse} `;
@@ -27,12 +27,12 @@ const Book = async function ({ params }: {
             <div className="flex justify-between pt-8">
                 <div>
                     {previousBookAndChapter?.book && previousBookAndChapter?.chapter && (
-                        <Link href={`/${previousBookAndChapter.book}/${previousBookAndChapter.chapter}`}>{`< ${previousBookAndChapter.book} ${previousBookAndChapter.chapter}`}</Link>
+                        <Link className="font-bold" href={`/${previousBookAndChapter.book}/${previousBookAndChapter.chapter}`}>{`< ${previousBookAndChapter.book.replace(/_/g, " ")} ${previousBookAndChapter.chapter}`}</Link>
                     )}
                 </div>
                 <div>
                     {nextBookAndChapter?.book && nextBookAndChapter?.chapter && (
-                        <Link href={`/${nextBookAndChapter.book}/${nextBookAndChapter.chapter}`}>{`${nextBookAndChapter.book} ${nextBookAndChapter.chapter} >`}</Link>
+                        <Link className="font-bold" href={`/${nextBookAndChapter.book}/${nextBookAndChapter.chapter}`}>{`${nextBookAndChapter.book.replace(/_/g, " ")} ${nextBookAndChapter.chapter} >`}</Link>
                     )}
                 </div>
             </div>

@@ -11,12 +11,12 @@ export const BOOKS: Book[] = [
     { name: "Joshua", numChapters: 24 },
     { name: "Judges", numChapters: 21 },
     { name: "Ruth", numChapters: 4 },
-    { name: "1 Samuel", numChapters: 31 },
-    { name: "2 Samuel", numChapters: 24 },
-    { name: "1 Kings", numChapters: 22 },
-    { name: "2 Kings", numChapters: 25 },
-    { name: "1 Chronicles", numChapters: 29 },
-    { name: "2 Chronicles", numChapters: 36 },
+    { name: "1_Samuel", numChapters: 31 },
+    { name: "2_Samuel", numChapters: 24 },
+    { name: "1_Kings", numChapters: 22 },
+    { name: "2_Kings", numChapters: 25 },
+    { name: "1_Chronicles", numChapters: 29 },
+    { name: "2_Chronicles", numChapters: 36 },
     { name: "Ezra", numChapters: 10 },
     { name: "Nehemiah", numChapters: 13 },
     { name: "Esther", numChapters: 10 },
@@ -24,7 +24,7 @@ export const BOOKS: Book[] = [
     { name: "Psalms", numChapters: 150 },
     { name: "Proverbs", numChapters: 31 },
     { name: "Ecclesiastes", numChapters: 12 },
-    { name: "Song of Solomon", numChapters: 8 },
+    { name: "Song_of_Songs", numChapters: 8 },
     { name: "Isaiah", numChapters: 66 },
     { name: "Jeremiah", numChapters: 52 },
     { name: "Lamentations", numChapters: 5 },
@@ -50,25 +50,25 @@ export const BOOKS: Book[] = [
     { name: "John", numChapters: 21 },
     { name: "Acts", numChapters: 28 },
     { name: "Romans", numChapters: 16 },
-    { name: "1 Corinthians", numChapters: 16 },
-    { name: "2 Corinthians", numChapters: 13 },
+    { name: "1_Corinthians", numChapters: 16 },
+    { name: "2_Corinthians", numChapters: 13 },
     { name: "Galatians", numChapters: 6 },
     { name: "Ephesians", numChapters: 6 },
     { name: "Philippians", numChapters: 4 },
     { name: "Colossians", numChapters: 4 },
-    { name: "1 Thessalonians", numChapters: 5 },
-    { name: "2 Thessalonians", numChapters: 3 },
-    { name: "1 Timothy", numChapters: 6 },
-    { name: "2 Timothy", numChapters: 4 },
+    { name: "1_Thessalonians", numChapters: 5 },
+    { name: "2_Thessalonians", numChapters: 3 },
+    { name: "1_Timothy", numChapters: 6 },
+    { name: "2_Timothy", numChapters: 4 },
     { name: "Titus", numChapters: 3 },
     { name: "Philemon", numChapters: 1 },
     { name: "Hebrews", numChapters: 13 },
     { name: "James", numChapters: 5 },
-    { name: "1 Peter", numChapters: 5 },
-    { name: "2 Peter", numChapters: 3 },
-    { name: "1 John", numChapters: 5 },
-    { name: "2 John", numChapters: 1 },
-    { name: "3 John", numChapters: 1 },
+    { name: "1_Peter", numChapters: 5 },
+    { name: "2_Peter", numChapters: 3 },
+    { name: "1_John", numChapters: 5 },
+    { name: "2_John", numChapters: 1 },
+    { name: "3_John", numChapters: 1 },
     { name: "Jude", numChapters: 1 },
     { name: "Revelation", numChapters: 22 }
 ];
@@ -81,6 +81,9 @@ export const getVersesFromChapterContent = (chapterContent: Content[]) => {
             currentVerse.content?.forEach((verseContent) => {
                 if (typeof verseContent === 'string') {
                     verses.push(verseContent);
+                } else if (typeof verseContent === 'object' && verseContent.text) {
+                    // Some verses are objects with text and poem properties
+                    verses.push(verseContent.text);
                 }
             });
         }

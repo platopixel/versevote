@@ -52,7 +52,7 @@ export interface BookChapter {
 
 export interface Content {
     type: string
-    content?: string[]
+    content?: string[] | { text: string, poem?: number }[]
     number?: number
 }
 
