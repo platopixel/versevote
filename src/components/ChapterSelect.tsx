@@ -9,7 +9,6 @@ import { Book } from '@/types/book';
 async function submitForm(formData: FormData) {
     const book = formData.get('book');
     const chapter = formData.get('chapter');
-    console.log(book, chapter);
 
     // Uncomment below line if redirection is appropriate here
     redirect(`/${book}/${chapter}`);
@@ -18,7 +17,6 @@ async function submitForm(formData: FormData) {
 const ChapterSelect = function ({ book, chapter }: { book?: string, chapter?: string }) {
     const [currentBook, setCurrentBook] = useState<Book>(BOOKS[0]);
     const [currentChapter, setCurrentChapter] = useState<string>(chapter ?? '1');
-    console.log(book, chapter);
 
     useEffect(() => {
         if (book) {

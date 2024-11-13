@@ -20,9 +20,11 @@ const Book = async function ({ params }: {
             <div className="border p-8 rounded-lg bg-amber-50  my-4">
                 <h1 className="font-bold">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
                 <p>
-                    {verses?.map((verse) => {
-                        return `${verse} `;
-                    })}
+                    {verses?.map((verse) => (
+                        <span key={verse.number}>
+                            <sup>{verse.number}</sup> {verse.text}
+                        </span>
+                    ))}
                 </p>
             </div>
             <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} />

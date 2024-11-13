@@ -79,3 +79,8 @@ export interface NextChapterAudioLinks {
     hays: string
     souer: string
 }
+
+export interface Verse {
+    number: number;
+    text: string[];
+}

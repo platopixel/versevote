@@ -1,5 +1,5 @@
 import { Book } from '@/types/book';
-import { Chapter, Content } from '@/types/chapter';
+import { Chapter, Content, Verse } from '@/types/chapter';
 
 export const BOOKS: Book[] = [
     // Old Testament
@@ -78,17 +78,20 @@ export const getVersesFromChapterContent = (chapterContent: Content[]) => {
     // return just the verse text in an array
     return chapterContent.reduce((verses, currentVerse) => {
         if (currentVerse.type === 'verse') {
+            const verseObject = { number: 0, text: [] } as Verse;
+            verseObject.number = currentVerse.number ?? 0;
             currentVerse.content?.forEach((verseContent) => {
                 if (typeof verseContent === 'string') {
-                    verses.push(verseContent);
+                    verseObject.text.push(`${verseContent} `);
                 } else if (typeof verseContent === 'object' && verseContent.text) {
                     // Some verses are objects with text and poem properties
-                    verses.push(verseContent.text);
+                    verseObject.text.push(`${verseContent.text} `);
                 }
             });
+            verses.push(verseObject);
         }
         return verses;
-    }, [] as string[]);
+    }, [] as Verse[]);
 }
 
 // Returns the book and chapter from the api path
@@ -99,7 +102,7 @@ export const parseBookAndChapterFomPath = (apiPath: string) => {
         // apiPath is in the format /api/BSB/Matthew/13.json
         const urlParts = apiPath.split('/');
         book = urlParts[3];
-        chapter = urlParts[4].replace('.json', '');
+        chapter = urlParts[4]?.replace('.json', '');
     } catch (error) {
         console.log('Error parsing book and chapter from path:', error);
     }
