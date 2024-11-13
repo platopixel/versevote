@@ -1,8 +1,8 @@
 // /[book]/[chapter]
 
-import Link from 'next/link';
 import { fetchBookAndChapter } from '@/utils/bible';
 import ChapterSelect from '@/components/ChapterSelect';
+import NextPreviousButtons from '@/components/NextPreviousButtons';
 
 const Book = async function ({ params }: {
     params: Promise<{ book: string, chapter: string }>
@@ -16,7 +16,8 @@ const Book = async function ({ params }: {
             <div className="flex justify-center">
                 <ChapterSelect book={book} chapter={chapter} />
             </div>
-            <div>
+            <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} />
+            <div className="border p-8 rounded-lg bg-amber-50  my-4">
                 <h1 className="font-bold">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
                 <p>
                     {verses?.map((verse) => {
@@ -24,18 +25,7 @@ const Book = async function ({ params }: {
                     })}
                 </p>
             </div>
-            <div className="flex justify-between pt-8">
-                <div>
-                    {previousBookAndChapter?.book && previousBookAndChapter?.chapter && (
-                        <Link className="font-bold" href={`/${previousBookAndChapter.book}/${previousBookAndChapter.chapter}`}>{`< ${previousBookAndChapter.book.replace(/_/g, " ")} ${previousBookAndChapter.chapter}`}</Link>
-                    )}
-                </div>
-                <div>
-                    {nextBookAndChapter?.book && nextBookAndChapter?.chapter && (
-                        <Link className="font-bold" href={`/${nextBookAndChapter.book}/${nextBookAndChapter.chapter}`}>{`${nextBookAndChapter.book.replace(/_/g, " ")} ${nextBookAndChapter.chapter} >`}</Link>
-                    )}
-                </div>
-            </div>
+            <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} />
         </div>
     );
 }
