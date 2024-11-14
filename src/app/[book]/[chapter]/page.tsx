@@ -18,9 +18,9 @@ const Book = async function ({ params }: {
                 <ChapterSelect book={book} chapter={chapter} />
             </div>
             <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} />
-            <div className="border p-8 rounded-lg bg-amber-50  my-4">
-                <h1 className="font-bold text-xl">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
-                <p>
+            <div className="border p-8 px-12 rounded-lg bg-amber-50  my-4">
+                <h1 className="font-bold text-xl mb-4">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
+                <p className="text-justify">
                     {verses?.map((verse) => (
                         <Verse key={verse.number} number={verse.number} text={verse.text} />
                     ))}
