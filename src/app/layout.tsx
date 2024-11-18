@@ -26,10 +26,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased flex mr-auto ml-auto p-12`}
+                style={{ maxWidth: 1280 }}
             >
                 {children}
             </body>
-        </html>
+        </html >
     );
 }

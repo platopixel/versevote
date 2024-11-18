@@ -83,4 +83,6 @@ export interface NextChapterAudioLinks {
 export interface Verse {
     number: number;
     text: string[];
+    chapter: string;
+    book: string;
 }
