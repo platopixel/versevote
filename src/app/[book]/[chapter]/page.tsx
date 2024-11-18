@@ -30,7 +30,7 @@ const Book = async function ({ params, searchParams }: {
                     className="w-96 rounded-l-lg shadow-[2px_0_6px_0_rgba(0,0,0,0.3)]"
                     style={{ clipPath: `inset(0 -10px 0 0)`, backgroundColor: '#f5f0e0' }}
                 >
-                    <Sidebar footnotes={selectedFootnotes} />
+                    <Sidebar footnotes={selectedFootnotes} book={book} chapter={chapter} verse={selectedVerse} />
                 </div>
                 <div className="flex flex-col p-8 flex-1">
                     <h1 className="font-bold text-xl mb-4">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>

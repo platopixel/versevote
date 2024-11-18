@@ -1,5 +1,6 @@
 import { Book } from '@/types/book';
 import { Chapter, Content, Verse } from '@/types/chapter';
+import { TranslationsResponse, Translation } from '@/types/translations';
 
 export const BOOKS: Book[] = [
     // Old Testament
@@ -137,4 +138,18 @@ export const fetchBookAndChapter = async (book: string | undefined, chapter: str
         previousBookAndChapter,
         footnotes,
     };
+}
+
+export const fetchTranslations = async () => {
+    let translations: Translation[] | undefined;
+
+    try {
+        const response = await fetch('https://bible.helloao.org/api/available_translations.json');
+        const data: TranslationsResponse = await response.json();
+        translations = data?.translations?.filter((translation: Translation) => translation.languageName === 'English');
+    } catch (error) {
+        console.log(error);
+    }
+
+    return translations;
 }
