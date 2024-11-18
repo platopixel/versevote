@@ -117,6 +117,7 @@ export const fetchBookAndChapter = async (book: string | undefined, chapter: str
     let verses;
     let nextBookAndChapter;
     let previousBookAndChapter;
+    let footnotes;
 
     try {
         const response = await fetch(`https://bible.helloao.org/api/BSB/${book}/${chapter}.json`);
@@ -125,6 +126,7 @@ export const fetchBookAndChapter = async (book: string | undefined, chapter: str
         verses = getVersesFromChapterContent(data.chapter.content);
         nextBookAndChapter = parseBookAndChapterFomPath(data.nextChapterApiLink);
         previousBookAndChapter = parseBookAndChapterFomPath(data.previousChapterApiLink);
+        footnotes = data.chapter.footnotes;
     } catch (error) {
         console.log(error);
     }
@@ -133,5 +135,6 @@ export const fetchBookAndChapter = async (book: string | undefined, chapter: str
         verses,
         nextBookAndChapter,
         previousBookAndChapter,
+        footnotes,
     };
 }
