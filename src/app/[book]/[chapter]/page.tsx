@@ -25,7 +25,7 @@ const Book = async function ({ params, searchParams }: {
                 <ChapterSelect book={book} chapter={chapter} />
             </div>
             <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} />
-            <div className="flex border-2 border-slate-300 rounded-lg bg-amber-50 my-4">
+            <div className="flex border-2 border-slate-400 rounded-lg bg-amber-50 my-4">
                 <div
                     className="w-96 rounded-l-lg shadow-[2px_0_6px_0_rgba(0,0,0,0.3)]"
                     style={{ clipPath: `inset(0 -10px 0 0)`, backgroundColor: '#f5f0e0' }}
