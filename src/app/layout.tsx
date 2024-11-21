@@ -27,10 +27,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased flex-col mr-auto ml-auto p-12`}
-                style={{ maxWidth: 1280 }}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased flex-col mr-auto ml-auto p-12 max-w-[1280px] min-w-[545px]`}
             >
-                <div className="border-b-2 border-slate-400 mb-12">
+                <div className="border-b-2 border-slate-400 mb-8">
                     <header className="flex justify-between items-center">
                         <h1 className="text-4xl font-bold">Verse Vote</h1>
                         <nav>
