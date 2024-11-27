@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
+import { checkIsAuthenticated } from '@/lib/auth/checkIsAuthenticated';
+import Login from '@/components/Login';
+import Logout from '@/components/Logout';
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -19,11 +22,14 @@ export const metadata: Metadata = {
     description: "The Jefferson Bible of the internet",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const isAuthenticated = await checkIsAuthenticated();
+    console.log('isAuthenticated:', isAuthenticated);
+
     return (
         <html lang="en">
             <body
@@ -35,13 +41,12 @@ export default function RootLayout({
                         <nav>
                             <ul className="flex gap-4">
                                 <li>
+                                    {isAuthenticated ? (
+                                        <Logout />
+                                    ) : (
+                                        <Login />
+                                    )}
                                     <Link href="/authenticate">Authenticate</Link>
-                                </li>
-                                <li>
-                                    <Link href="/vote">Vote</Link>
-                                </li>
-                                <li>
-                                    <Link href="/results">Results</Link>
                                 </li>
                             </ul>
                         </nav>
