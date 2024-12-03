@@ -123,7 +123,7 @@ export const fetchBookAndChapter = async (book: string | undefined, chapter: str
     try {
         const response = await fetch(`https://bible.helloao.org/api/BSB/${book}/${chapter}.json`);
         const data: Chapter = await response.json();
-        console.log(data);
+        // console.log(data);
         verses = getVersesFromChapterContent(data.chapter.content);
         nextBookAndChapter = parseBookAndChapterFomPath(data.nextChapterApiLink);
         previousBookAndChapter = parseBookAndChapterFomPath(data.previousChapterApiLink);
