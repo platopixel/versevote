@@ -1,9 +1,10 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { adminDb } from '@/lib/firebase/firebase-admin';
 import admin from 'firebase-admin';
 
-export const submitVote = async (isUpVote: boolean, verseId: string, userId: string | undefined) => {
+export const submitVote = async (isUpVote: boolean, verseId: string, userId: string | undefined, currentPath: string) => {
     if (!userId) {
         console.log('No user ID provided for vote');
         return;
@@ -47,4 +48,6 @@ export const submitVote = async (isUpVote: boolean, verseId: string, userId: str
             });
         }
     });
+
+    revalidatePath(currentPath);
 };

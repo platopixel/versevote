@@ -17,7 +17,7 @@ const Sidebar = async ({ footnotes, book, chapter, verse }: Props) => {
     const verseKey = `${book}_${chapter}_${verse}`;
     // get the verse doc from firebase using the verseKey
     const verseDoc = await adminDb.collection('verses').doc(verseKey).get();
-    console.log(verseDoc.data());
+    const verseData = verseDoc.data();
     const readableBook = book?.replace(/_/g, " ");
 
     return (
@@ -26,7 +26,7 @@ const Sidebar = async ({ footnotes, book, chapter, verse }: Props) => {
                 <h1 className="font-bold">{readableBook} {chapter}:{verse}</h1>
             )}
             {isAuthenticated && hasSelectedVerse && (
-                <VoteButtons verseKey={verseKey} />
+                <VoteButtons verseKey={verseKey} upVotes={verseData?.upVotes} downVotes={verseData?.downVotes} />
             )}
             {!!footnotes && footnotes.length > 0 && (
                 <>
