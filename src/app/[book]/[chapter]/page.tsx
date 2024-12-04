@@ -1,5 +1,6 @@
 // /[book]/[chapter]
 
+import 'server-only';
 import { fetchBookAndChapter } from '@/utils/bible';
 import ChapterSelect from '@/components/ChapterSelect';
 import NextPreviousButtons from '@/components/NextPreviousButtons';
@@ -23,7 +24,6 @@ const Book = async function ({ params, searchParams }: {
             <div className="flex justify-center">
                 <ChapterSelect book={book} chapter={chapter} />
             </div>
-            {/* <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} /> */}
             <div className="flex border-2 border-slate-400 rounded-lg bg-amber-50 my-4">
                 <div
                     className="max-w-72 w-72 rounded-l-lg shadow-[2px_0_6px_0_rgba(0,0,0,0.3)]"
@@ -32,9 +32,6 @@ const Book = async function ({ params, searchParams }: {
                     <Sidebar footnotes={selectedFootnotes} book={book} chapter={chapter} verse={selectedVerse} />
                 </div>
                 <div className="flex flex-col p-8 py-4 flex-1 min-w-80 max-h-[1024px] overflow-x-hidden overflow-y-auto">
-                    {/* <div className="pb-4">
-                        <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} />
-                    </div> */}
                     <h1 className="font-bold text-xl mb-4">{`${book.replace(/_/g, " ")} ${chapter}`}</h1>
                     <p className="text-justify">
                         {verses?.map((verse) => (
@@ -53,7 +50,6 @@ const Book = async function ({ params, searchParams }: {
                     </div>
                 </div>
             </div>
-            {/* <NextPreviousButtons next={nextBookAndChapter} previous={previousBookAndChapter} /> */}
         </div >
     );
 }

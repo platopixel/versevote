@@ -1,3 +1,4 @@
+import 'server-only';
 import { handleLogout } from '@/lib/auth/signOutServerAction';
 
 function Logout() {

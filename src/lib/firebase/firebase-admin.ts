@@ -13,7 +13,7 @@ if (!admin.apps.length) {
     });
 }
 
-const adminDB = initFirestore({
+const adminDb = initFirestore({
     credential: admin.credential.cert({
         projectId: process.env.AUTH_FIREBASE_PROJECT_ID,
         clientEmail: process.env.AUTH_FIREBASE_CLIENT_EMAIL,
@@ -23,4 +23,4 @@ const adminDB = initFirestore({
 
 const adminAuth = admin.auth(app);
 
-export { adminDB, adminAuth };
+export { adminDb, adminAuth };
