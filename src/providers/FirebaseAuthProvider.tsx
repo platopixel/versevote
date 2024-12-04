@@ -1,7 +1,7 @@
 'use client';
 
 import { Session } from 'next-auth';
-import { SessionProvider, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { signInWithCustomToken } from 'firebase/auth';
 import { auth } from '@/firestore';
@@ -30,7 +30,7 @@ function FirebaseAuthProvider({ children }: { children: React.ReactNode }) {
         syncFirebaseAuth(session);
     }, [session]);
 
-    return <SessionProvider>{children}</SessionProvider>
+    return <>{children}</>
 }
 
 export default FirebaseAuthProvider;

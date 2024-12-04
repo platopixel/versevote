@@ -2,6 +2,7 @@
 import { checkIsAuthenticated } from '@/lib/auth/checkIsAuthenticated';
 import { Footnote } from "@/types/chapter";
 import VoteButtons from './VoteButtons';
+import { adminDb } from '@/lib/firebase/firebase-admin';
 
 type Props = {
     footnotes: Footnote[] | undefined;
@@ -13,6 +14,10 @@ type Props = {
 const Sidebar = async ({ footnotes, book, chapter, verse }: Props) => {
     const isAuthenticated = await checkIsAuthenticated();
     const hasSelectedVerse = !!book && !!chapter && !!verse;
+    const verseKey = `${book}_${chapter}_${verse}`;
+    // get the verse doc from firebase using the verseKey
+    const verseDoc = await adminDb.collection('verses').doc(verseKey).get();
+    console.log(verseDoc.data());
     const readableBook = book?.replace(/_/g, " ");
 
     return (
@@ -21,7 +26,7 @@ const Sidebar = async ({ footnotes, book, chapter, verse }: Props) => {
                 <h1 className="font-bold">{readableBook} {chapter}:{verse}</h1>
             )}
             {isAuthenticated && hasSelectedVerse && (
-                <VoteButtons book={book} chapter={chapter} verse={verse} />
+                <VoteButtons verseKey={verseKey} />
             )}
             {!!footnotes && footnotes.length > 0 && (
                 <>

@@ -2,23 +2,22 @@
 
 import { submitVote } from '@/actions/SubmitVote';
 import { useCallback } from 'react';
+import { useSession } from 'next-auth/react';
 
 type Props = {
-    book: string | undefined;
-    chapter: string | undefined;
-    verse: number | undefined;
+    verseKey: string;
 }
 
-export default function VoteButtons({ book, chapter, verse }: Props) {
-    const verseKey = `${book}_${chapter}_${verse}`;
+export default function VoteButtons({ verseKey }: Props) {
+    const { data: session } = useSession();
 
     const handleUpVote = useCallback(() => {
-        submitVote(true, verseKey);
-    }, [verseKey]);;
+        submitVote(true, verseKey, session?.user?.id);
+    }, [session?.user?.id, verseKey]);;
 
     const handleDownVote = useCallback(() => {
-        submitVote(false, verseKey);
-    }, [verseKey]);;
+        submitVote(false, verseKey, session?.user?.id);
+    }, [session?.user?.id, verseKey]);;
 
     return (
         <div className="flex w-full justify-between">
