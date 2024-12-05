@@ -4,7 +4,8 @@
 
 :root {
   --background: #ece7d2;
-  --foreground: #322d2d;
+  /* --foreground: #322d2d; */
+  --foreground: #313628;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,7 +26,7 @@ body {
 }
 
 h1, h2, h3 {
-    color: #3e4e40;
+    color: #313628;
 }
 
 a {

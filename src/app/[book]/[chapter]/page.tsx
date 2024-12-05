@@ -24,7 +24,7 @@ const Book = async function ({ params, searchParams }: {
             <div className="flex justify-center">
                 <ChapterSelect book={book} chapter={chapter} />
             </div>
-            <div className="flex border-2 border-slate-400 rounded-lg bg-amber-50 my-4">
+            <div className="flex border border-[#857F74] rounded-lg bg-amber-50 my-4">
                 <div
                     className="max-w-72 w-72 rounded-l-lg shadow-[2px_0_6px_0_rgba(0,0,0,0.3)]"
                     style={{ clipPath: `inset(0 -10px 0 0)`, backgroundColor: '#f5f0e0' }}

@@ -24,7 +24,7 @@ export default function VoteButtons({ verseKey, upVotes, downVotes }: Props) {
     }, [session?.user?.id, verseKey, pathname]);
 
     return (
-        <div className="flex w-full justify-between">
+        <div className="flex w-full justify-around">
             <button className={`bg-slate-300 p-1 rounded-lg`} onClick={handleUpVote}>
                 ↑ ({upVotes || 0})
             </button>
