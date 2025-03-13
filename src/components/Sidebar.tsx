@@ -4,6 +4,7 @@ import { Footnote } from "@/types/chapter";
 import VoteButtons from './VoteButtons';
 import AddComment from './AddNote';
 import { adminDb } from '@/lib/firebase/firebase-admin';
+import { DocumentData } from 'firebase-admin/firestore';
 
 type Props = {
     footnotes: Footnote[] | undefined;
@@ -20,6 +21,10 @@ const Sidebar = async ({ footnotes, book, chapter, verse }: Props) => {
     const verseDoc = await adminDb.collection('verses').doc(verseKey).get();
     const verseData = verseDoc.data();
     const readableBook = book?.replace(/_/g, " ");
+    const notesRef = adminDb.collection('notes');
+    const snapshot = await notesRef.where('verseId', '==', `${verseKey}`).get();
+    const notes: DocumentData[] = [];
+    snapshot.forEach(doc => notes.push(doc.data()))
 
     return (
         <div className="flex flex-col py-8 px-4">
@@ -31,6 +36,16 @@ const Sidebar = async ({ footnotes, book, chapter, verse }: Props) => {
                     <VoteButtons verseKey={verseKey} upVotes={verseData?.upVotes} downVotes={verseData?.downVotes} />
                     <AddComment verseKey={verseKey} />
                 </div>
+            )}
+            {!!notes && notes.length > 0 && (
+                <>
+                    <h1>Notes:</h1>
+                    {notes?.map((note) => (
+                        <div key={note.noteId}>
+                            <p>{note.text}</p>
+                        </div>
+                    ))}
+                </>
             )}
             {!!footnotes && footnotes.length > 0 && (
                 <>
